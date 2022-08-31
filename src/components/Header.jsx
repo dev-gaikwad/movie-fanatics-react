@@ -1,9 +1,10 @@
 import { useState, useContext } from 'react';
+import { Link } from 'react-router-dom';
 import MoviesContext from '../context/MoviesContext';
 
-function Header({ appName }) {
+function Header() {
   const [searchTerm, setSearchTerm] = useState('');
-  const { searchQueryInAPI } = useContext(MoviesContext);
+  const { appName, searchQueryInAPI } = useContext(MoviesContext);
 
   const handleSearch = (event) => {
     setSearchTerm(event.target.value);
@@ -19,7 +20,9 @@ function Header({ appName }) {
   return (
     <header>
       <div>
-        <h1>{appName}</h1>
+        <h1>
+          <Link to='/'>{appName}</Link>
+        </h1>
         <form id='form' onSubmit={handleSubmitEvent}>
           <input
             type='text'
