@@ -28,7 +28,6 @@ function Header({ appName }) {
             placeholder='Search...'
             onChange={handleSearch}
           />
-          <button type='submit'>Search</button>
         </form>
       </div>
     </header>
