@@ -131,3 +131,31 @@ main {
 .movie:hover .overview {
   transform: translateY(0);
 }
+
+/* Footer*/
+
+footer {
+  padding: 1rem 1rem;
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+  text-align: center;
+}
+
+footer a {
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+footer ul {
+  padding-inline-start: 0px;
+}
+
+footer li {
+  display: inline;
+  list-style: none;
+  padding: 1rem;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}

@@ -20,9 +20,10 @@ function Header() {
   return (
     <header>
       <div>
-        <h1>
-          <Link to='/'>{appName}</Link>
-        </h1>
+        <Link id='heading-title' to='/'>
+          <h1>{appName}</h1>
+        </Link>
+
         <form id='form' onSubmit={handleSubmitEvent}>
           <input
             type='text'
