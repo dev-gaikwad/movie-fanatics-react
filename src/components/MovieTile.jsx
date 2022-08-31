@@ -3,12 +3,22 @@ import React from 'react';
 function MovieTile({ movie }) {
   const img_url = 'https://image.tmdb.org/t/p/w500';
   const image = img_url + movie.poster_path;
+
+  function ratingColorFilter(rating) {
+    if (rating >= 7.5) {
+      return 'green';
+    } else if (rating >= 5) {
+      return 'orange';
+    } else return 'red';
+  }
   return (
     <div className='movie'>
       <img src={image} alt='Movie Poster' />
       <div className='movie-info'>
         <h3>{movie.title}</h3>
-        <span className='rating'>{movie.vote_average}</span>
+        <span className={ratingColorFilter(movie.vote_average)}>
+          {movie.vote_average}
+        </span>
       </div>
       <div className='overview'>
         <h3>Overview</h3>
