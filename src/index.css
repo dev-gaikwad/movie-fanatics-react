@@ -1,13 +1,133 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+:root {
+  --primary-color: #4b5563;
+  --secondary-color: black;
+  --text-color: white;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  background-color: var(--primary-color);
+  font-family: 'Work Sans', sans-serif;
+  margin: 0px;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* Header */
+
+header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+}
+
+header h1 {
+  color: var(--primary-color);
+}
+
+.search {
+  background-color: transparent;
+  padding: 0.5rem;
+  border: 1px solid var(--primary-color);
+  color: var(--primary-color);
+  border-radius: 1rem;
+  margin: 1rem;
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+.search::placeholder {
+  color: var(--primary-color);
+}
+
+.search:focus {
+  outline: none;
+  background-color: var(--secondary-color);
+}
+
+/* Main Content */
+
+main {
+  width: 100%;
+  margin: 0px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  background-color: var(--primary-color);
+}
+
+.movie {
+  background-color: var(--secondary-color);
+  width: 300px;
+  margin: 1rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 10px 10px 15px black;
+  border-radius: 0.3rem;
+}
+
+.movie img {
+  width: 100%;
+  background-size: cover;
+}
+
+.movie-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  justify-content: space-between;
+  padding: 0rem 0.5rem;
+  letter-spacing: 0.5px;
+}
+
+.movie-info h3 {
+  margin-top: 0;
+  font-size: 1rem;
+  color: var(--primary-color);
+}
+
+.movie-info span {
+  background-color: var(--primary-color);
+  padding: 0.25rem 0.5rem;
+  font-weight: bold;
+}
+
+.movie-info span.green {
+  color: lightgreen;
+}
+
+.movie-info span.orange {
+  color: orange;
+}
+
+.movie-info span.red {
+  color: red;
+}
+
+.overview {
+  background-color: transparent;
+  color: var(--text-color);
+  padding: 1rem;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+  max-height: 100%;
+  transform: translateY(101%);
+  transition: transform 0.5s ease-in;
+}
+
+.movie img:hover {
+  opacity: 0.2;
+}
+.movie:hover .overview {
+  transform: translateY(0);
 }
