@@ -17,10 +17,17 @@ export const MoviesProvider = ({ children }) => {
     setMovies(data.results);
   }
 
+  function searchQueryInAPI(searchTerm) {
+    if (searchTerm !== '') {
+      const searchQuery = search_url + searchTerm + `"'`;
+      getMoviesFromAPI(searchQuery);
+    }
+  }
   return (
     <MoviesContext.Provider
       value={{
         movies,
+        searchQueryInAPI,
       }}
     >
       {children}
