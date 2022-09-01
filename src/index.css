@@ -162,13 +162,23 @@ footer a:hover {
 
 /* Movie Info Page */
 
+.info-page {
+  width: 100%;
+  margin: 0px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+}
+
 .movie-info-container {
   width: 100%;
   margin: 0px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  background-color: var(--primary-color);
+  color: var(--text-color);
 }
 
 .movie-info-container img {
