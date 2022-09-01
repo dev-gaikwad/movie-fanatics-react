@@ -159,3 +159,19 @@ footer li {
 footer a:hover {
   text-decoration: underline;
 }
+
+/* Movie Info Page */
+
+.movie-info-container {
+  width: 100%;
+  margin: 0px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  background-color: var(--primary-color);
+}
+
+.movie-info-container img {
+  width: 100%;
+  background-size: cover;
+}

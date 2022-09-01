@@ -5,8 +5,8 @@ function Footer() {
   return (
     <footer>
       <div className='container'>
-        <h3 class='footer-title'>Get in Touch</h3>
-        <div class='footer-link'>
+        <h3 className='footer-title'>Get in Touch</h3>
+        <div className='footer-link'>
           <ul>
             <li>
               <Link to='/about'>About Page</Link>

@@ -6,6 +6,7 @@ import Header from './components/Header';
 import Main from './components/Main';
 import Footer from './components/Footer';
 import AboutPage from './pages/AboutPage';
+import InfoPage from './pages/InfoPage';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
             }
           ></Route>
           <Route path='/about' element={<AboutPage />}></Route>
+          <Route path='/info' element={<InfoPage />}></Route>
         </Routes>
       </Router>
     </MoviesProvider>
