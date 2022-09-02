@@ -1,5 +1,4 @@
 import { useContext } from 'react';
-// import { useState, useEffect } from 'react';
 import MoviesContext from '../context/MoviesContext';
 import MovieTile from './MovieTile';
 

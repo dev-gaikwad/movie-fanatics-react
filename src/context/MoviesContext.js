@@ -36,12 +36,6 @@ export const MoviesProvider = ({ children }) => {
     } else window.location.reload();
   }
 
-  //   function detailedInfo(movie) {
-  //     console.log(movie);
-  //     setClickedMovie({ ...movie });
-  //     console.log(clickedMovie);
-  //   }
-  //   console.log('outside func', clickedMovie);
   return (
     <MoviesContext.Provider
       value={{
