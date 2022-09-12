@@ -7,7 +7,6 @@ function InfoPage({ movie }) {
   const param = useParams();
   const { clickedMovie, genreList } = useContext(MoviesContext);
   console.log(clickedMovie);
-  console.log(clickedMovie.genre_ids);
 
   const backdrop_url = 'https://image.tmdb.org/t/p/original';
   const backdrop = backdrop_url + clickedMovie.backdrop_path;

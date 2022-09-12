@@ -7,6 +7,7 @@ import Main from './components/Main';
 import Footer from './components/Footer';
 import AboutPage from './pages/AboutPage';
 import InfoPage from './pages/InfoPage';
+import Navbar from './components/shared/Navbar';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
             element={
               <>
                 <Header />
+                <Navbar />
                 <Main />
                 <Footer />
               </>

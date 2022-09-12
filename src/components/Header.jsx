@@ -18,12 +18,13 @@ function Header() {
   };
 
   return (
-    <header>
-      <div>
-        <Link id='heading-title' to='/'>
+    <header className='header'>
+      <div className='header-title'>
+        <Link to='/'>
           <h1>{appName}</h1>
         </Link>
-
+      </div>
+      <div>
         <form id='form' onSubmit={handleSubmitEvent}>
           <input
             type='text'
