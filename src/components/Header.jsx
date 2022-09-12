@@ -1,10 +1,10 @@
 import { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import MoviesContext from '../context/MoviesContext';
+import ContentContext from '../context/ContentContext';
 
 function Header() {
   const [searchTerm, setSearchTerm] = useState('');
-  const { appName, searchQueryInAPI } = useContext(MoviesContext);
+  const { appName, searchQueryInAPI } = useContext(ContentContext);
 
   const handleSearch = (event) => {
     setSearchTerm(event.target.value);

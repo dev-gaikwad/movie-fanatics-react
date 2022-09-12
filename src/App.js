@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { MoviesProvider } from './context/MoviesContext';
+import { ContentProvider } from './context/ContentContext';
 
 import Header from './components/Header';
 import Main from './components/Main';
@@ -11,7 +11,7 @@ import Navbar from './components/shared/Navbar';
 
 function App() {
   return (
-    <MoviesProvider>
+    <ContentProvider>
       <Router>
         <Routes>
           <Route
@@ -30,7 +30,7 @@ function App() {
           <Route path='/info' element={<InfoPage />}></Route>
         </Routes>
       </Router>
-    </MoviesProvider>
+    </ContentProvider>
   );
 }
 

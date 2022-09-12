@@ -1,14 +1,14 @@
 import { useContext } from 'react';
-import MoviesContext from '../context/MoviesContext';
-import MovieTile from './MovieTile';
+import ContentContext from '../context/ContentContext';
+import ContentTile from './ContentTile';
 
 function Main() {
-  const { movies } = useContext(MoviesContext);
+  const { contentList } = useContext(ContentContext);
 
   return (
     <main id='main'>
-      {movies.map((movie) => (
-        <MovieTile key={movie.id} movie={movie} />
+      {contentList.map((content) => (
+        <ContentTile key={content.id} content={content} />
       ))}
     </main>
   );

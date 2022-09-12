@@ -1,12 +1,12 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import MoviesContext from '../context/MoviesContext';
+import ContentContext from '../context/ContentContext';
 
-function MovieTile({ movie }) {
-  const { setClickedMovie } = useContext(MoviesContext);
+function MovieTile({ content }) {
+  const { setClickedTile, getContentDetails } = useContext(ContentContext);
 
   const img_url = 'https://image.tmdb.org/t/p/w500';
-  const image = img_url + movie.poster_path;
+  const image = img_url + content.poster_path;
 
   function ratingColorFilter(rating) {
     if (rating >= 7.5) {
@@ -20,20 +20,21 @@ function MovieTile({ movie }) {
     <div
       className='movie'
       onClick={() => {
-        setClickedMovie(movie);
+        setClickedTile(content);
+        getContentDetails(content);
       }}
     >
       <Link to='/info'>
-        <img src={image} alt='Movie Poster' />
+        <img src={image} alt='Poster' />
         <div className='movie-info'>
-          <h3>{movie.title}</h3>
-          <span className={ratingColorFilter(movie.vote_average)}>
-            {movie.vote_average}
+          <h3>{content.title}</h3>
+          <span className={ratingColorFilter(content.vote_average)}>
+            {content.vote_average}
           </span>
         </div>
         <div className='overview'>
           <h3>Overview</h3>
-          {movie.overview}
+          {content.overview}
         </div>
       </Link>
     </div>

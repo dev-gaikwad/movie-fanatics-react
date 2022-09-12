@@ -1,10 +1,10 @@
 import React from 'react';
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import MoviesContext from '../../context/MoviesContext';
+import ContentContext from '../../context/ContentContext';
 
 function Navbar() {
-  const { urlConstructer } = useContext(MoviesContext);
+  const { urlConstructer } = useContext(ContentContext);
   const tabClickHandler = (event) => {
     urlConstructer(event.target.id);
   };
