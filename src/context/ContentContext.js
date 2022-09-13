@@ -2,7 +2,10 @@ import { createContext, useState, useEffect } from 'react';
 
 const ContentContext = createContext();
 export const ContentProvider = ({ children }) => {
-  const [contentList, setContentList] = useState([]);
+  const [popularList, setPopularList] = useState([]);
+  const [trendingMovieList, setTrendingMovieList] = useState([]);
+  const [trendingTVList, setTrendingTVList] = useState([]);
+  const [searchList, setSearchList] = useState([]);
   const [clickedTile, setClickedTile] = useState({});
   const [contentDetails, setContentDetails] = useState([]);
   const [similarContent, setSimilarContent] = useState([]);
@@ -19,25 +22,49 @@ export const ContentProvider = ({ children }) => {
   var trendingtv_url = `https://api.themoviedb.org/3/trending/tv/week?sort_by=popularity.desc&api_key=${apiKey}&page=1`;
   const search_url = `https://api.themoviedb.org/3/search/multi?api_key=${apiKey}&query="`;
 
+  // initial display of trending movies and tv show
   useEffect(() => {
-    async function getContentFromAPI() {
-      const response = await fetch(trending_url);
-      const data = await response.json();
-      setContentList(data.results);
+    async function getData() {
+      const popular = await fetch(trending_url);
+      const popularMovies = await popular.json();
+      setPopularList(popularMovies.results);
     }
-    getContentFromAPI();
+    getData();
   }, []);
 
-  async function getContentFromAPI(url) {
+  useEffect(() => {
+    async function getTrendingMovieList() {
+      const trendingMovie = await fetch(trendingmovie_url);
+      const trendingMovies = await trendingMovie.json();
+      setTrendingMovieList(trendingMovies.results);
+    }
+    getTrendingMovieList();
+  }, []);
+
+  useEffect(() => {
+    async function getTrendingTVList() {
+      const trendingTV = await fetch(trendingtv_url);
+      const trendingTVShows = await trendingTV.json();
+      setTrendingTVList(trendingTVShows.results);
+    }
+    getTrendingTVList();
+  }, []);
+
+  // API call function to get contents from any url
+  const getContentFromAPI = async (url) => {
     const response = await fetch(url);
     const data = await response.json();
-    setContentList(data.results);
-  }
+    return data;
+  };
 
+  // Construct search query according to API requirements
   function searchQueryInAPI(searchTerm) {
     if (searchTerm !== '') {
       const searchQuery = search_url + searchTerm + `"'`;
-      getContentFromAPI(searchQuery);
+      (async () => {
+        const searchResponse = await getContentFromAPI(searchQuery);
+        setSearchList(searchResponse.results);
+      })();
     } else window.location.reload();
   }
 
@@ -47,25 +74,28 @@ export const ContentProvider = ({ children }) => {
     setContentDetails(data);
   }
 
-  function urlConstructer(term) {
-    if (term === 'discover') {
-      getContentFromAPI(trending_url);
-    } else if (term === 'trending-movies') {
-      getContentFromAPI(trendingmovie_url);
-    } else if (term === 'trending-tv') {
-      getContentFromAPI(trendingtv_url);
-    }
-  }
-
+  // Get details about the content whose tile was clicked
   function getContentDetails(clickedTile) {
-    const id = clickedTile.id;
-    const media = clickedTile.media_type;
+    let id = clickedTile.id;
+    let media = clickedTile.media_type;
+    if (media === undefined) {
+      media = 'movie'; //placeholder until media type is a state
+    }
     const contentDetail_url = `https://api.themoviedb.org/3/${media}/${id}?api_key=${apiKey}&language=en-US`;
-    getDetailsFromAPI(contentDetail_url);
+    (async () => {
+      const contentInfoDetails = await getContentFromAPI(contentDetail_url);
+      setContentDetails(contentInfoDetails);
+    })();
     const similar_url = `https://api.themoviedb.org/3/${media}/${id}/similar?api_key=${apiKey}&language=en-US&page=1`;
-    getSimilarContent(similar_url);
+    (async () => {
+      const similarContentList = await getContentFromAPI(similar_url);
+      setSimilarContent(similarContentList.results);
+    })();
     const video_url = `https://api.themoviedb.org/3/${media}/${id}/videos?api_key=${apiKey}&language=en-US&page=1`;
-    getVideo(video_url);
+    (async () => {
+      const videoList = await getContentFromAPI(video_url);
+      setVideo(videoList.results);
+    })();
   }
 
   async function getSimilarContent(url) {
@@ -84,11 +114,13 @@ export const ContentProvider = ({ children }) => {
     <ContentContext.Provider
       value={{
         appName,
-        contentList,
+        popularList,
+        trendingMovieList,
+        trendingTVList,
+        searchList,
         searchQueryInAPI,
         setClickedTile,
         clickedTile,
-        urlConstructer,
         getContentDetails,
         contentDetails,
         getSimilarContent,
