@@ -1,7 +1,6 @@
 import React from 'react';
 import { useContext } from 'react';
-import { Link } from 'react-router-dom';
-import ContentContext from '../../context/ContentContext';
+import ContentContext from '../context/ContentContext';
 
 function Navbar() {
   const { urlConstructer } = useContext(ContentContext);

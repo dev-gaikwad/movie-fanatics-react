@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import ContentContext from '../context/ContentContext';
 
-function MovieTile({ content }) {
+function ContentTile({ content }) {
   const { setClickedTile, getContentDetails } = useContext(ContentContext);
 
   const img_url = 'https://image.tmdb.org/t/p/w500';
@@ -18,7 +18,7 @@ function MovieTile({ content }) {
 
   return (
     <div
-      className='movie'
+      className='content'
       onClick={() => {
         setClickedTile(content);
         getContentDetails(content);
@@ -26,7 +26,7 @@ function MovieTile({ content }) {
     >
       <Link to='/info'>
         <img src={image} alt='Poster' />
-        <div className='movie-info'>
+        <div className='content-info'>
           <h3>{content.title || content.name}</h3>
           <span className={ratingColorFilter(content.vote_average)}>
             {content.vote_average}
@@ -41,4 +41,4 @@ function MovieTile({ content }) {
   );
 }
 
-export default MovieTile;
+export default ContentTile;

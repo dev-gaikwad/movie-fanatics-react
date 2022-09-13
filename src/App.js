@@ -5,9 +5,9 @@ import { ContentProvider } from './context/ContentContext';
 import Header from './components/Header';
 import Main from './components/Main';
 import Footer from './components/Footer';
+import SearchDisplay from './components/SearchDisplay';
 import AboutPage from './pages/AboutPage';
 import InfoPage from './pages/InfoPage';
-import Navbar from './components/shared/Navbar';
 
 function App() {
   return (
@@ -20,7 +20,6 @@ function App() {
             element={
               <>
                 <Header />
-                <Navbar />
                 <Main />
                 <Footer />
               </>
@@ -28,6 +27,7 @@ function App() {
           ></Route>
           <Route path='/about' element={<AboutPage />}></Route>
           <Route path='/info' element={<InfoPage />}></Route>
+          <Route path='/search' element={<SearchDisplay />}></Route>
         </Routes>
       </Router>
     </ContentProvider>
