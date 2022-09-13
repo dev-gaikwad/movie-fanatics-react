@@ -7,12 +7,16 @@ import ContentContext from '../context/ContentContext';
 
 function InfoPage() {
   const param = useParams();
-  const { contentDetails, similarContent } = useContext(ContentContext);
+  const { contentDetails, similarContent, video } = useContext(ContentContext);
 
   const backdrop_url = 'https://image.tmdb.org/t/p/original';
   const backdrop = backdrop_url + contentDetails.backdrop_path;
+  let trailerKey = '';
 
-  console.log(similarContent);
+  if (video.length > 0) {
+    const trailer = video.find((vid) => vid.name === 'Official Trailer');
+    trailerKey = trailer.key;
+  }
 
   return (
     <>
@@ -49,18 +53,29 @@ function InfoPage() {
             <h3>Overview :</h3>
             <p>{contentDetails.overview}</p>
           </div>
-          <div className='main'>
-            <div className='container'>
-              <h3>Similar Content</h3>
-            </div>
-            {similarContent ? (
-              similarContent.map((content) => (
-                <ContentTile key={content.id} content={content} />
-              ))
-            ) : (
-              <p>No Similar Content</p>
-            )}
+
+          <div>
+            <iframe
+              width='853'
+              height='480'
+              src={`https://www.youtube.com/embed/${trailerKey}`}
+              frameBorder='0'
+              allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+              allowFullScreen
+              title='Trailer Video'
+            />
           </div>
+
+          <div className='main'>
+            <h3>Similar Content</h3>
+          </div>
+          {similarContent ? (
+            similarContent.map((content) => (
+              <ContentTile key={content.id} content={content} />
+            ))
+          ) : (
+            <p>No Similar Content</p>
+          )}
         </div>
       </div>
     </>
