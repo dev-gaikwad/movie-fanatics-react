@@ -94,27 +94,47 @@ a {
   width: 100%;
   margin: 0px;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  background-color: var(--primary-color);
+  flex-direction: column;
 }
 
-.movie {
+.category {
+  width: 100%;
+  margin: 0px;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  overflow-x: auto;
+  justify-content: flex-start;
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+}
+
+.category::-webkit-scrollbar {
+  background-color: transparent;
+  width: 50vh;
+}
+.category::-webkit-scrollbar-thumb {
+  background-color: black;
+  width: 50px;
+}
+
+.content {
   background-color: var(--secondary-color);
   width: 300px;
   margin: 1rem;
   position: relative;
   overflow: hidden;
+  flex-shrink: 0;
   box-shadow: 10px 10px 15px black;
   border-radius: 0.3rem;
 }
 
-.movie img {
+.content img {
   width: 100%;
   background-size: cover;
 }
 
-.movie-info {
+.content-info {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -123,27 +143,27 @@ a {
   letter-spacing: 0.5px;
 }
 
-.movie-info h3 {
+.content-info h3 {
   margin-top: 0;
   font-size: 1rem;
   color: var(--primary-color);
 }
 
-.movie-info span {
+.content-info span {
   background-color: var(--primary-color);
   padding: 0.25rem 0.5rem;
   font-weight: bold;
 }
 
-.movie-info span.green {
+.content-info span.green {
   color: lightgreen;
 }
 
-.movie-info span.orange {
+.content-info span.orange {
   color: orange;
 }
 
-.movie-info span.red {
+.content-info span.red {
   color: red;
 }
 
@@ -160,16 +180,17 @@ a {
   transition: transform 0.5s ease-in-out;
 }
 
-/* .movie img:hover {
+/* .content img:hover {
   opacity: 0.2;
 } */
-.movie:hover .overview {
+.content:hover .overview {
   transform: translateY(0);
 }
 
 /* Footer*/
 
 footer {
+  margin-top: 1rem;
   padding: 1rem 1rem;
   background-color: var(--secondary-color);
   color: var(--text-color);
@@ -195,28 +216,70 @@ footer a:hover {
   text-decoration: underline;
 }
 
-/* Movie Info Page */
+/* Content Info Page */
 
 .info-page {
   width: 100%;
   margin: 0px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
   background-color: var(--secondary-color);
   color: var(--text-color);
 }
 
-.movie-info-container {
-  width: 100%;
-  margin: 0px;
+.content-title-container {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+}
+.content-title {
   justify-content: center;
-  color: var(--text-color);
+  display: block;
+  margin: auto;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid;
 }
 
-.movie-info-container img {
+.content-tagline {
+  justify-content: center;
+  display: block;
+  margin: auto;
+  margin-bottom: 1rem;
+}
+
+.content-info-container {
   width: 100%;
+  margin: 0px;
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  color: var(--text-color);
+  padding: 1rem;
+}
+.content-info-container h3 {
+  color: var(--primary-color);
+}
+
+.release-date {
+  width: 33%;
+}
+
+.genre {
+  width: 33%;
+}
+
+.genre h4 {
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 0.5rem;
+}
+
+.runtime {
+  width: 33%;
+}
+
+.backdrop img {
+  width: 99vw;
   background-size: cover;
+  justify-content: center;
 }
