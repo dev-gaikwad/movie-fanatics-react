@@ -27,7 +27,7 @@ function MovieTile({ content }) {
       <Link to='/info'>
         <img src={image} alt='Poster' />
         <div className='movie-info'>
-          <h3>{content.title}</h3>
+          <h3>{content.title || content.name}</h3>
           <span className={ratingColorFilter(content.vote_average)}>
             {content.vote_average}
           </span>

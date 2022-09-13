@@ -6,7 +6,7 @@ function Main() {
   const { contentList } = useContext(ContentContext);
 
   return (
-    <main id='main'>
+    <main className='main'>
       {contentList.map((content) => (
         <ContentTile key={content.id} content={content} />
       ))}

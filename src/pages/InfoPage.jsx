@@ -1,22 +1,26 @@
 import React from 'react';
 import { useContext } from 'react';
 import { useParams } from 'react-router-dom';
+import ContentTile from '../components/ContentTile';
+import Header from '../components/Header';
 import ContentContext from '../context/ContentContext';
 
 function InfoPage() {
   const param = useParams();
-  const { contentDetails } = useContext(ContentContext);
+  const { contentDetails, similarContent } = useContext(ContentContext);
 
   const backdrop_url = 'https://image.tmdb.org/t/p/original';
   const backdrop = backdrop_url + contentDetails.backdrop_path;
 
-  console.log(contentDetails);
+  console.log(similarContent);
 
   return (
     <>
+      <Header />
       <div className='info-page'>
         <h2>
-          {contentDetails.title} : {contentDetails.tagline}
+          {contentDetails.title || contentDetails.name}
+          {contentDetails.tagline}
         </h2>
 
         <div className='movie-info-container'>
@@ -36,17 +40,26 @@ function InfoPage() {
               )}
             </h3>
           </div>
-          <h3>Runtime : {contentDetails.runtime} mins</h3>
+          <h3>
+            Runtime :{' '}
+            {contentDetails.runtime || contentDetails.episode_run_time} mins
+          </h3>
 
-          {/* <h3>
-            Genre :
-            {contentDetails.genres.map(({ name }) => {
-              return <p>{name}</p>;
-            })}
-          </h3> */}
           <div>
             <h3>Overview :</h3>
             <p>{contentDetails.overview}</p>
+          </div>
+          <div className='main'>
+            <div className='container'>
+              <h3>Similar Content</h3>
+            </div>
+            {similarContent ? (
+              similarContent.map((content) => (
+                <ContentTile key={content.id} content={content} />
+              ))
+            ) : (
+              <p>No Similar Content</p>
+            )}
           </div>
         </div>
       </div>
