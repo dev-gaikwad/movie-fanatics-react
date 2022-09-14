@@ -14,7 +14,7 @@ function Header() {
     event.preventDefault();
     searchQueryInAPI(searchTerm);
 
-    setSearchTerm('');
+    // setSearchTerm('');
   };
 
   return (
@@ -25,12 +25,7 @@ function Header() {
         </Link>
       </div>
       <div>
-        <form
-          id='form'
-          onSubmit={() => {
-            handleSubmitEvent();
-          }}
-        >
+        <form id='form' onSubmit={handleSubmitEvent}>
           <input
             type='text'
             id='search'
