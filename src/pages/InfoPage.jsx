@@ -12,13 +12,6 @@ function InfoPage() {
 
   const backdrop_url = 'https://image.tmdb.org/t/p/original';
   const backdrop = backdrop_url + contentDetails.backdrop_path;
-  let trailerKey = '';
-
-  if (video === true && video.length > 0) {
-    const trailer = video.find((vid) => vid.name === 'Official Trailer');
-    trailerKey = trailer.key;
-    console.log(trailerKey);
-  }
 
   return (
     <>
@@ -61,7 +54,7 @@ function InfoPage() {
           <h3>Overview :</h3>
           <p>{contentDetails.overview}</p>
 
-          <VideoPlayer video={video} key={trailerKey} />
+          <VideoPlayer video={video} />
         </div>
         <div className='category similar'>
           <h3>Similar Content</h3>
